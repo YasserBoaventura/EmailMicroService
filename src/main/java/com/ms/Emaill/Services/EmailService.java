@@ -19,25 +19,26 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Service
-@RequiredArgsConstructor
-public class EmailService {
-
+@RequiredArgsConstructor 
+public class EmailService { 
 	private final EmailRepository emailRepository;
 	private final JavaMailSender emailSender;
 	
-	@Value(value ="${spring.mail.username}")
-	private String emailFrom;
 	
-	@Transactional 
+	
+	@Value("${spring.mail.username}")
+	private String emailFrom;
+	//envios de emails
+	@Transactional   
 	public EmailModel  sendEmail(EmailModel emailModel) {
 		try {
 			emailModel.setSendDateEmail(LocalDateTime.now());
 			emailModel.setEmailFrom(emailFrom);
-			// 
+		 	// 
 			SimpleMailMessage message = new SimpleMailMessage();
 	
 			message.setFrom(emailFrom);
-			message.setTo(emailModel.getEmailTo());  // ← ESTA LINHA ERA O PROBLEMA!
+			message.setTo(emailModel.getEmailTo()); 
 			message.setSubject(emailModel.getSubject());
 			message.setText(emailModel.getText());
 			
@@ -47,11 +48,10 @@ public class EmailService {
 		}catch(MailException e) { 
 		System.out.print(e.getMessage());
 			emailModel.setStatus(StatusEmail.ERROR);
-			 
-		}
+		} 
 		finally {
 			return emailRepository.save(emailModel);
 		}
 	}
-	
+	 
 }

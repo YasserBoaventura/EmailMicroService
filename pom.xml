@@ -8,7 +8,6 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <!-- VERSÃO CORRETA - Spring Boot 4.0.1 não existe ainda! -->
         <version>3.3.4</version>
         <relativePath/>
     </parent>
@@ -23,7 +22,7 @@
         <java.version>21</java.version>
     </properties>
     
-    <dependencies>
+    <dependencies> 
         <!-- Dependências principais -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -33,6 +32,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
+        
+        <dependency>
+    <groupId>com.sun.mail</groupId>
+    <artifactId>jakarta.mail</artifactId>
+    <version>2.0.1</version>
+</dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>

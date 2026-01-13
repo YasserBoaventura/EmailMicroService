@@ -21,15 +21,6 @@ import ch.qos.logback.classic.pattern.MessageConverter;
 
 @Configuration
 public class RabittMConfig {
-
- @Value("${broker.queues.email.name}")
- private String queue;
- 
- @Bean  
-   public Queue queue() {
-	 return new Queue(queue, true); 
- }
- 
  @Bean 
  public Jackson2JsonMessageConverter messageConverter() {
 	 ObjectMapper mapper = new ObjectMapper();
@@ -37,17 +28,18 @@ public class RabittMConfig {
  }
 
  @Bean
- public JavaMailSender javaMailSender() {
+ public JavaMailSender javaMailSender() { 
      JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-     
+      
      mailSender.setHost("smtp.gmail.com");
      mailSender.setPort(465);
+     //uvei o meu proprio porque a aplicao nao tem email proprio
      mailSender.setUsername("yasserboaventura78@gmail.com");
      mailSender.setPassword("ljuh vqvc rcbx ptre");
-     
+               
      Properties props = mailSender.getJavaMailProperties();
      props.put("mail.transport.protocol", "smtp");
-     props.put("mail.smtp.auth", "true");
+     props.put("mail.smtp.auth", "true"); 
      props.put("mail.smtp.ssl.enable", "true");
      props.put("mail.smtp.socketFactory.port", "465");
      props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
@@ -67,5 +59,4 @@ public class RabittMConfig {
      
      return mailSender;
  }
-
- }
+}

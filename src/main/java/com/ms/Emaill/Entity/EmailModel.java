@@ -32,13 +32,13 @@ public class EmailModel implements Serializable{
 	private UUID userId;  
 	private String emailFrom;
 	private String emailTo; 
-	private String subject;
+	private String subject; 
 	@Column(columnDefinition = "TEXT")
 	private String text;
 	private LocalDateTime sendDateEmail;
 
 	@Enumerated(EnumType.STRING)
-    private StatusEmail status;
+    private StatusEmail status;  
 
 
 }

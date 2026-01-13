@@ -38,7 +38,7 @@ public class EmailController {
             message.setText("Testando conexão SSL com Gmail...");
             
             mailSender.send(message);
-            return "✅ Email enviado! SSL funcionando!";
+            return "Email enviado! SSL funcionando!";
             
         } catch (Exception e) {
             return "❌ Erro: " + e.getMessage();
